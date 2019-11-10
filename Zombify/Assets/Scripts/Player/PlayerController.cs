@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private GameObject equippedAbility;
 
     public GameObject[] Weapons = new GameObject[4];
-
+    //doin
     #region Sprinting Vars
     private float currentStamina = 3.0f;
     private float MaxStamina = 3.0f;
