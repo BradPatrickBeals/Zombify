@@ -45,6 +45,10 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(reloadSpeed);
         while (isReloading)
         {
+            if (totalAmmo != 0)
+            {
+                yield return null;
+            }
             if (totalAmmo >= magSize)
             {
                 int amountToReload = magSize - currentBulletCount;

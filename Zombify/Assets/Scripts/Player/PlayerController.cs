@@ -16,9 +16,18 @@ public class PlayerController : MonoBehaviour
         Engineer
     }
 
+    public enum PlayerNumber
+    {
+        Player1,
+        Player2,
+        Player3,
+        Player4
+    }
+
     public float baseSpeed;
     public int health;
-    public PlayerClasses playerClass;
+    [HideInInspector]public PlayerClasses playerClass;
+    public PlayerNumber playerNumber;
 
     public int upgradePoints = 0;
     [SerializeField] private Ability[] skillTree;
@@ -38,15 +47,15 @@ public class PlayerController : MonoBehaviour
     private const float StaminaTimeToRegen = 1.5f;
     #endregion
 
-    [SerializeField] private GameObject gunSpawn;
+    [SerializeField]private GameObject gunSpawn;
 
     private bool hasWeaponEquipped;
     private Weapon currentWeapon;
     private float currentSpeed;
     private float sprintSpeed;
 
-    [SerializeField] private TMP_Text currentBulletCount;
-    [SerializeField] private TMP_Text totalAmmo;
+    private TMP_Text currentBulletCount;
+    private TMP_Text totalAmmo;
 
     private Vector2 lookAtPoint;
 
@@ -72,6 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         currentSpeed = baseSpeed;
         currentWeapon = Weapons[0].GetComponent<Weapon>();
+        GetUI();
     }
 
     public virtual void Update()
@@ -194,5 +204,30 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(lookAtPoint, .2f);
+    }
+
+   private void GetUI()
+   {
+        if (playerNumber == PlayerNumber.Player1)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player1CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player1TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player2)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player2CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player2TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player3)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player3CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player3TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player4)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player4CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player4TA").GetComponent<TMP_Text>();
+        }
+
     }
 }
