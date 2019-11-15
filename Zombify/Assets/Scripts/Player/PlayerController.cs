@@ -16,17 +16,30 @@ public class PlayerController : MonoBehaviour
         Engineer
     }
 
+    public enum PlayerNumber
+    {
+        Player1,
+        Player2,
+        Player3,
+        Player4
+    }
+
     public float baseSpeed;
     public int health;
-    public PlayerClasses playerClass;
+    [HideInInspector]public PlayerClasses playerClass;
+    public PlayerNumber playerNumber;
 
     public int upgradePoints = 0;
     public List<Ability> skillTree = new List<Ability>();
     [SerializeField]private Ability equippedAbility;
 
     public GameObject[] Weapons = new GameObject[4];
+<<<<<<< HEAD
     [HideInInspector]public bool isGettingAmmo = false;
 
+=======
+    //doin
+>>>>>>> refs/remotes/origin/KDCheapCheap/Development
     #region Sprinting Vars
     private float currentStamina = 3.0f;
     private float MaxStamina = 3.0f;
@@ -39,7 +52,7 @@ public class PlayerController : MonoBehaviour
     private const float StaminaTimeToRegen = 1.5f;
     #endregion
 
-    [SerializeField] private GameObject gunSpawn;
+    [SerializeField]private GameObject gunSpawn;
 
     private bool hasWeaponEquipped;
     [HideInInspector] public Weapon currentWeapon;
@@ -209,6 +222,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawSphere(lookAtPoint, .2f);
     }
 
+<<<<<<< HEAD
     private void GetUI()
     {
         switch (playerClass)
@@ -230,5 +244,30 @@ public class PlayerController : MonoBehaviour
                 totalAmmo = GameObject.FindGameObjectWithTag("Player4TA").GetComponent<TMP_Text>();
                 break;
         }
+=======
+   private void GetUI()
+   {
+        if (playerNumber == PlayerNumber.Player1)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player1CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player1TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player2)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player2CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player2TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player3)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player3CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player3TA").GetComponent<TMP_Text>();
+        }
+        else if (playerNumber == PlayerNumber.Player4)
+        {
+            currentBulletCount = GameObject.FindGameObjectWithTag("Player4CBC").GetComponent<TMP_Text>();
+            totalAmmo = GameObject.FindGameObjectWithTag("Player4TA").GetComponent<TMP_Text>();
+        }
+
+>>>>>>> refs/remotes/origin/KDCheapCheap/Development
     }
 }
